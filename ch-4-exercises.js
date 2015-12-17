@@ -4,9 +4,7 @@ var _ = require('ramda');
 //==============
 // Refactor to remove all arguments by partially applying the function
 
-var words = function(str) {
-  return _.split(' ', str);
-};
+var words = _.curry(_.split(' '));
 
 console.log(words('the rain in spain'));
 
