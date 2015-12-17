@@ -12,8 +12,16 @@ console.log(words('the rain in spain'));
 //==============
 // Use map to make a new words fn that works on an array of strings.
 
-var sentences = undefined;
+var sentences = function(array_of_strings) {
+    return _.map(words, array_of_strings);
+}
 
+var array_of_strings = [
+    'the rain in spain',
+    'falls mainly in the plain'
+];
+
+console.log(sentences(array_of_strings));
 
 // Exercise 2
 //==============
