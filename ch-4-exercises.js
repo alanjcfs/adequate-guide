@@ -41,12 +41,9 @@ console.log(filterQs('the quick'));
 var _keepHighest = function(x,y){ return x >= y ? x : y; };
 
 // REFACTOR THIS ONE:
-var max = function(xs) {
-  return _.reduce(function(acc, x){
-    return _keepHighest(acc, x);
-  }, -Infinity, xs);
-};
+var max = _.reduce(_keepHighest, -Infinity);
 
+console.log(max([5, 2, 3, 8, 1]));
 
 // Bonus 1:
 // ============
