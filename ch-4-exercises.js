@@ -27,9 +27,9 @@ console.log(sentences(array_of_strings));
 //==============
 // Refactor to remove all arguments by partially applying the functions
 
-var filterQs = function(xs) {
-  return _.filter(function(x){ return match(/q/i, x);  }, xs);
-};
+var filterQs = _.curry(_.filter(function(x){ return _.match(/q/i, x);  }));
+
+console.log(filterQs('the quick'));
 
 
 // Exercise 3
