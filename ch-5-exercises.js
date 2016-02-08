@@ -1,5 +1,6 @@
 var _ = require('ramda');
 var accounting = require('accounting');
+var assertEqual = require('assert').equal;
 
 // Example Data
 var CARS = [
@@ -21,12 +22,12 @@ var CARS = [
 
 var isLastInStock = _.compose(_.prop('in_stock'), _.last);
 
-console.log(isLastInStock(CARS));
+assertEqual(isLastInStock(CARS), false);
 
 // Exercise 2:
 // ============
 // Use _.compose(), _.prop() and _.head() to retrieve the name of the first car.
-var nameOfFirstCar = _.compose(_.prop('name'), _.first);
+var nameOfFirstCar = _.compose(_.prop('name'), _.head);
 assertEqual(nameOfFirstCar(CARS), 'Ferrari FF');
 
 // Exercise 3:
@@ -34,11 +35,12 @@ assertEqual(nameOfFirstCar(CARS), 'Ferrari FF');
 // Use the helper function _average to refactor averageDollarValue as a composition.
 var _average = function(xs) { return _.reduce(_.add, 0, xs) / xs.length; }; // <- leave be
 
-var averageDollarValue = function(cars) {
-  var dollar_values = _.map(function(c) { return c.dollar_value; }, cars);
-  return _average(dollar_values);
-};
-
+// var averageDollarValue = function(cars) {
+//   var dollar_values = _.map(function(c) { return c.dollar_value; }, cars);
+//   return _average(dollar_values);
+// };
+var averageDollarValue = _.compose(_average, _.map(function(c) { return c.dollar_value; }));
+assertEqual(averageDollarValue(CARS), 790700);
 
 // Exercise 4:
 // ============
